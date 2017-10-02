@@ -1,0 +1,29 @@
+#!/bin/bash
+
+note() {
+  if [ ! -z "$1" ]; then
+		clear
+    # Using the "$@" here will take all parameters passed into
+    # this function so we can place everything into our file.
+		echo "" >> "$HOME/notes/notes.md"
+    echo "## $@" >> "$HOME/notes/notes.md"
+		cat "$HOME/notes/notes.md"
+    cat - >> "$HOME/notes/notes.md"
+		clear
+		cat "$HOME/notes/notes.md"
+  else
+    vim "$HOME/notes/notes.md"
+	fi
+}
+
+notes() {
+  if [ ! -z "$1" ]; then
+    # open vim to search of first arg
+    escaped=$(echo "$@" | sed s/\ /\\\\\ /g)
+    echo $escaped
+    vim +/"$escaped" "$HOME/notes/notes.md"
+  else
+    open "http://localhost:6419/"
+    grip "$HOME/notes/notes.md"
+  fi
+}
