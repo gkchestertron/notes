@@ -18,10 +18,20 @@ note() {
 
 notes() {
   if [ ! -z "$1" ]; then
-    # open vim to search of first arg
-    escaped=$(echo "$@" | sed s/\ /\\\\\ /g)
-    echo $escaped
-    vim +/"$escaped" "$HOME/notes/notes.md"
+    if [ "$1" = "push" ]; then
+      cd "$HOME/notes"
+      git add -A
+      git commit -m "update notes"
+      git push
+    elif [ "$1" = "pull" ]; then
+      cd "$HOME/notes"
+      git pull
+    else
+      # open vim to search of first arg
+      escaped=$(echo "$@" | sed s/\ /\\\\\ /g)
+      echo $escaped
+      vim +/"$escaped" "$HOME/notes/notes.md"
+    fi
   else
     open "http://localhost:6419/"
     grip "$HOME/notes/notes.md"
