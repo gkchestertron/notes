@@ -3,21 +3,21 @@
 note() {
   # start a new heading and append from stdout
   if [ ! -z "$1" ]; then
-		clear
-		echo "" >> "$HOME/notes/notes.md"
+    clear
+    echo "" >> "$HOME/notes/notes.md"
     echo "## $@" >> "$HOME/notes/notes.md"
-		cat "$HOME/notes/notes.md"
+    cat "$HOME/notes/notes.md"
     cat - >> "$HOME/notes/notes.md"
-		clear
-		cat "$HOME/notes/notes.md"
+    clear
+    cat "$HOME/notes/notes.md"
   # append to file from stdout
   else
     clear
-		cat "$HOME/notes/notes.md"
+    cat "$HOME/notes/notes.md"
     cat - >> "$HOME/notes/notes.md"
-		clear
-		cat "$HOME/notes/notes.md"
-	fi
+    clear
+    cat "$HOME/notes/notes.md"
+  fi
 }
 
 notes() {
