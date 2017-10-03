@@ -1,42 +1,57 @@
 #!/bin/bash
 
 note() {
+  # start a new heading and append from stdout
   if [ ! -z "$1" ]; then
 		clear
-    # Using the "$@" here will take all parameters passed into
-    # this function so we can place everything into our file.
 		echo "" >> "$HOME/notes/notes.md"
     echo "## $@" >> "$HOME/notes/notes.md"
 		cat "$HOME/notes/notes.md"
     cat - >> "$HOME/notes/notes.md"
 		clear
 		cat "$HOME/notes/notes.md"
+  # append to file from stdout
   else
-    vim "$HOME/notes/notes.md"
+    clear
+		cat "$HOME/notes/notes.md"
+    cat - >> "$HOME/notes/notes.md"
+		clear
+		cat "$HOME/notes/notes.md"
 	fi
 }
 
 notes() {
   cur_dir=$(pwd)
+
   if [ ! -z "$1" ]; then
+    # commit and push if args are exactly "push"
     if [ "$1" = "push" ]; then
       cd "$HOME/notes"
       git add -A
       git commit -m "update notes"
       git push
       cd $cur_dir
+
+    # pull from github if args are exactly "pull"
     elif [ "$1" = "pull" ]; then
       cd "$HOME/notes"
       git pull
       cd $cur_dir
+
+    # serve with grip if args are exactly "serve"
+    elif [ "$1" = "serve" ]; then
+      open "http://localhost:6419"
+      grip "$HOME/notes/notes.md"
+
+    # open vim to search of the args
     else
-      # open vim to search of first arg
       escaped=$(echo "$@" | sed s/\ /\\\\\ /g)
       echo $escaped
       vim +/"$escaped" "$HOME/notes/notes.md"
     fi
+
+  # just open the notes
   else
-    open "http://localhost:6419/"
-    grip "$HOME/notes/notes.md"
+    vim + "$HOME/notes/notes.md"
   fi
 }

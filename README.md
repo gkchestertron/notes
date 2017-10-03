@@ -20,7 +20,7 @@ source ~/notes/notes
 ## Usage
 The usage is simple:
 ```
-# open the notes.md file in vim
+# append to notes from stdout
 $ note
 
 # create a new subheading at the end of your notes file and reads from stdout, 
@@ -30,7 +30,7 @@ $ note some heading title
 # open the notes file and puts cursor on first occurrance of the search you gave it
 $ notes some search text
 
-# run grip on notes and opens in browser
+# open notes at the end of the file
 $ notes
 
 # push your notes to the your git repo
@@ -39,6 +39,9 @@ $ notes push
 
 # pull your notes from your fork for easy sharing across any computers you use
 $ notes pull
+
+# serve notes with grip and open in browser
+$ notes serve
 ```
 
 ## Note On Private Repos
