@@ -10,6 +10,7 @@ note() {
     cat - >> "$HOME/notes/notes.md"
     clear
     cat "$HOME/notes/notes.md"
+
   # append to file from stdout
   else
     clear
