@@ -5,6 +5,7 @@ Notes is a simple note-taking software for the command line.
 
 - [grip](https://github.com/joeyespo/grip) - if you want to be able to view your notes as an html page
 - vim (if you want to use a lesser editor then fork and make your own)
+- git
 
 ## Installation
 First, fork this repo, and clone to your home folder:
@@ -16,6 +17,12 @@ Then source the script in your ~/.bashrc or ~/.bash\_profile
 ```
 source ~/notes/notes
 ```
+
+## Mac and Linux Users
+This should just work. Seriously, if you don't have git and vim, I can't help you.
+
+## Windows Users
+As usual, you're on your own.
 
 ## Usage
 The usage is simple:
@@ -44,5 +51,5 @@ $ notes pull
 $ notes serve
 ```
 
-## Note On Private Repos
-If you want your notes in a private repo (probably not a bad idea), you can't fork. You'll have to make a copy of the repo.
+## Note on Using Private Repos
+If you want your notes in a private repo (probably not a bad idea), you can't fork. You'll have to make a manual copy of the repo. Be my guest.
