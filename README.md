@@ -17,14 +17,6 @@ Then source the script in your ~/.bashrc or ~/.bash\_profile
 ```
 source ~/notes/notes
 ```
-Alternatively you could copy the notes script to someplace in your path:
-```
-$ cp notes /usr/local/bin/
-```
-or symlink it:
-```
-ln -s $(pwd)/notes /usr/local/bin/notes
-```
 
 ## Mac and Linux Users
 This should just work. Seriously, if you don't have git and vim, I can't help you.
