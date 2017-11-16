@@ -15,7 +15,7 @@ git clone https://github.com/<your_username>/notes.git
 ```
 Then source the script in your ~/.bashrc or ~/.bash\_profile
 ```
-source ~/notes/notes
+echo "source ~/notes/notes" >> ~/.bash_profile
 ```
 
 ## Mac and Linux Users
