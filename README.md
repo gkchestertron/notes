@@ -42,7 +42,7 @@ $ note some_name
 # open a specific note file in vim
 $ notes some_name
 
-# open the default note file in vim
+# open the the notefiles folder in vim so you can select a notefile to work in
 $ notes
 
 # serve default note file with grip and open in browser
