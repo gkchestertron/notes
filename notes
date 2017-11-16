@@ -3,21 +3,32 @@
 note() {
   # start a new heading and append from stdout
   if [ ! -z "$1" ]; then
+    notes pull
+    file=$(ls "$HOME/notes/notefiles/" | grep "$1")
+    if [ -z "$file" ]
+    then
+      echo file not found
+      return
+    fi
     clear
-    echo "" >> "$HOME/notes/notes.md"
-    echo "## $@" >> "$HOME/notes/notes.md"
-    cat "$HOME/notes/notes.md"
-    cat - >> "$HOME/notes/notes.md"
+    echo "" >> "$HOME/notes/notefiles/$file"
+    cat "$HOME/notes/notefiles/$file"
+    cat - >> "$HOME/notes/notefiles/$file"
+    echo syncing notes - pushing to repo...
+    notes push &>/dev/null &
     clear
-    cat "$HOME/notes/notes.md"
+    cat "$HOME/notes/notefiles/$file"
 
   # append to file from stdout
   else
+    notes pull
     clear
-    cat "$HOME/notes/notes.md"
-    cat - >> "$HOME/notes/notes.md"
+    cat "$HOME/notes/notefiles/notes.md"
+    cat - >> "$HOME/notes/notefiles/notes.md"
+    echo syncing notes - pushing to repo...
+    notes push &>/dev/null &
     clear
-    cat "$HOME/notes/notes.md"
+    cat "$HOME/notes/notefiles/notes.md"
   fi
 }
 
@@ -27,6 +38,7 @@ notes() {
   if [ ! -z "$1" ]; then
     # commit and push if args are exactly "push"
     if [ "$1" = "push" ]; then
+      echo syncing notes - pushing to repo...
       cd "$HOME/notes"
       git add -A
       git commit -m "update notes"
@@ -35,6 +47,7 @@ notes() {
 
     # pull from github if args are exactly "pull"
     elif [ "$1" = "pull" ]; then
+      echo syncing notes - pulling from repo...
       cd "$HOME/notes"
       git pull
       cd $cur_dir
@@ -42,17 +55,42 @@ notes() {
     # serve with grip if args are exactly "serve"
     elif [ "$1" = "serve" ]; then
       open "http://localhost:6419"
-      grip "$HOME/notes/notes.md"
+
+      file="notes.md"
+
+      if [ ! -z "$2" ]
+      then
+        file="$2.md"
+      fi
+
+      grip "$HOME/notes/notefiles/$file"
+
+    # create a note file
+    elif [ "$1" = "create" ]
+    then
+      echo "# $2" >> "$HOME/notes/notefiles/$2.md"
+      notes "$2.md"
+
+    # destroy a note file
+    elif [ "$1" = "destroy" ]
+    then
+      echo "removing notefile: $2.md"
+      rm "$HOME/notes/notefiles/$2.md"
 
     # open vim to search of the args
     else
-      escaped=$(echo "$@" | sed s/\ /\\\\\ /g)
-      echo $escaped
-      vim +/"$escaped" "$HOME/notes/notes.md"
+      notes pull
+      file=$(ls "$HOME/notes/notefiles/" | grep "$1")
+      vim "$HOME/notes/notefiles/$file"
+      echo syncing notes - pushing to repo...
+      notes push &>/dev/null &
     fi
 
   # just open the notes
   else
-    vim + "$HOME/notes/notes.md"
+    notes pull
+    vim "$HOME/notes/notefiles/"
+    echo syncing notes - pushing to repo...
+    notes push &>/dev/null &
   fi
 }

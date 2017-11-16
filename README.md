@@ -27,18 +27,29 @@ As usual, you're on your own.
 ## Usage
 The usage is simple:
 ```
-# append to notes from stdout
+# create a note
+$ notes create some_name
+
+# destroy a note
+$ notes destroy some_name
+
+# append to default notes from stdout (press CTRL-C to finish - and make sure to make a new line, or it won't write)
 $ note
 
-# create a new subheading at the end of your notes file and reads from stdout, 
-# appending to notes file when you CTRL-C
-$ note some heading title
+# appending to a specific note file from stdout
+$ note some_name
 
-# open the notes file and puts cursor on first occurrance of the search you gave it
-$ notes some search text
+# open a specific note file in vim
+$ notes some_name
 
-# open notes at the end of the file
+# open the default note file in vim
 $ notes
+
+# serve default note file with grip and open in browser
+$ notes serve
+
+# serve specific note file with grip and open in browser
+$ notes serve some_name
 
 # push your notes to the your git repo
 # will create a generic commit and push it to your fork
@@ -46,10 +57,10 @@ $ notes push
 
 # pull your notes from your fork for easy sharing across any computers you use
 $ notes pull
-
-# serve notes with grip and open in browser
-$ notes serve
 ```
+
+## Keeping up to date
+While there are push and pull methods available, notes will automatically try to push and pull every time you open/close them
 
 ## Note on Using Private Repos
 If you want your notes in a private repo (probably not a bad idea), you can't fork. You'll have to make a manual copy of the repo. Be my guest.
