@@ -51,6 +51,9 @@ $ notes serve
 # serve specific note file with grip and open in browser
 $ notes serve some_name
 
+# server runs in background - this is how you kill it
+$ notes serve kill
+
 # push your notes to the your git repo
 # will create a generic commit and push it to your fork
 $ notes push
