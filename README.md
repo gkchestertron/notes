@@ -60,7 +60,7 @@ $ notes pull
 ```
 
 ## Keeping up to date
-While there are push and pull methods available, notes will automatically try to push and pull every time you open/close them
+While there are push and pull methods available, notes will automatically try to push and pull every time you open/close them.
 
 ## Note on Using Private Repos
 If you want your notes in a private repo (probably not a bad idea), you can't fork. You'll have to make a manual copy of the repo. Be my guest.
